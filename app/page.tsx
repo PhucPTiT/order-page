@@ -13,25 +13,25 @@ export interface Item {
 
 export default async function Home() {
   try {
-    const res = await axios.get('http://localhost:8000/items');
+    const res = await axios.get('http://localhost:9000/items');
     if (!res.data) {
-        throw new Error("Không có dữ liệu trả về từ API");
+      throw new Error("Không có dữ liệu trả về từ API");
     }
     const items: Item[] = res.data;
     return (
       <div className="flex-1">
         <div className="max-w-7xl py-4 m-auto">
-          <Order items = {items}/>
+          <Order items={items} />
         </div>
       </div>
     );
-  } catch (error : any) {
+  } catch (error: any) {
     if (error.response) {
-        console.error("Lỗi từ server:", error.response.data);
+      console.error("Lỗi từ server:", error.response.data);
     } else if (error.request) {
-        console.error("Yêu cầu không có phản hồi từ server:", error.request);
+      console.error("Yêu cầu không có phản hồi từ server:", error.request);
     } else {
-        console.error("Lỗi:", error.message);
+      console.error("Lỗi:", error.message);
     }
-}
+  }
 }
